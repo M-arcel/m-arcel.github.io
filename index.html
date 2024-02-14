@@ -39,6 +39,11 @@ nextButton.addEventListener('click', () => {
 
 function updateTopic() {
     const remainingTopics = topics.filter((topic, index) => index !== currentTopicIndex);
+    if (remainingTopics.length === 0) {
+        topicElement.textContent = "End of the game!";
+        nextButton.disabled = true; // Disable the button to prevent further clicks
+        return;
+    }
     const randomIndex = Math.floor(Math.random() * remainingTopics.length);
     const newTopic = remainingTopics[randomIndex];
     topicElement.textContent = newTopic;

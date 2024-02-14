@@ -3,16 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Color Transition</title>
+<title>Topic Selector</title>
 <style>
     body {
-        transition: background-color 0.5s ease; /* Transition effect for background-color */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+        transition: background-color 0.5s ease;
+    }
+
+    #container {
+        text-align: center;
+    }
+
+    #topic {
+        font-size: 24px;
+        margin-bottom: 20px;
+        animation: fadein 1s;
+    }
+
+    #nextButton {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    #nextButton:hover {
+        background-color: #0056b3;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 600px) {
+        #topic {
+            font-size: 18px;
+        }
+        #nextButton {
+            font-size: 14px;
+        }
     }
 </style>
 </head>
 <body>
-<div id="topic"></div>
-<button id="nextButton">Next Topic</button>
+<div id="container">
+    <div id="topic">Click the button to start</div>
+    <button id="nextButton">Next Topic</button>
+</div>
 
 <script>
 const topics = [

@@ -1,95 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Marcel Regeci</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <script src="https://cdn.jsdelivr.net/npm/three@0.131.2/build/three.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html"><i class="material-icons">home</i>Home</a></li>
-        <li><a href="about.html"><i class="material-icons">person</i>About</a></li>
-        <li><a href="contact.html"><i class="material-icons">email</i>Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <div id="main-page">
-    <div id="canvas-container"></div>
-    <h1 id="main-title">Hi, I'm</h1>
-    <h1 id="main-title">Marcel Regeci</h1>
-    <p id="main-welcome">Welcome to my personal website!</p>
-  </div>
+    <div class="container">
+        <h1 id="topic">Conversation Topic</h1>
+        <button id="nextButton">Next Topic</button>
+    </div>
 
-  <script>
-    // Create a scene
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf9f9f9);
-
-    // Create a camera
-    const camera = new THREE.PerspectiveCamera(
-    14,
-    window.innerWidth / window.innerHeight,
-    1,
-    1000
-    );
-
-    // Create a renderer
-    const renderer = new THREE.WebGL1Renderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById("canvas-container").appendChild(renderer.domElement);
-
-    // Create a cube
-    const geometry = new THREE.BoxGeometry(1, 1, 1, 128, 128, 128 );
-    const material = new THREE.MeshPhongMaterial({ color: 0xf1c40f, transparent: true, opacity: 0 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    // Position the camera
-    camera.position.z = 5;
-    camera.position.x = -0.6;
-
-    // Add a light to the scene
-    const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(5, 5, 10);
-    scene.add(light);
-
-    // Render the scene
-    function animate() {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.0025;
-      cube.rotation.y += 0.0025;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // animate the cube to fade in after a delay
-    const fadeInDuration = 5000; // in milliseconds
-    const fadeInDelay = 500; // in milliseconds
-    let fadeInStartTime = null;
-
-    function fadeInCallback() {
-      const now = Date.now();
-      const timeElapsed = now - fadeInStartTime - fadeInDelay;
-      const opacity = Math.min(0.7, timeElapsed / fadeInDuration);
-      cube.traverse(child => {
-        if (child instanceof THREE.Mesh) {
-          child.material.opacity = opacity;
-        }
-      });
-      if (timeElapsed < fadeInDuration) {
-        setTimeout(fadeInCallback, 16); // repeat every frame
-      }
-    }
-
-    fadeInStartTime = Date.now();
-    setTimeout(fadeInCallback, fadeInDelay);
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>

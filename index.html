@@ -13,8 +13,6 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #f5f5f5;
-        transition: background-color 0.5s ease;
     }
 
     #container {
@@ -24,22 +22,22 @@
     #topic {
         font-size: 24px;
         margin-bottom: 20px;
-        animation: fadein 1s;
+        animation: fadein 3s;
     }
 
     #nextButton {
-        background-color: #007bff;
+        background-color: #ffffff;
         color: white;
         border: none;
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 20px;
         transition: background-color 5s ease;
     }
 
     #nextButton:hover {
-        background-color: #0056b3;
+        background-color: #dddddd;
     }
 
     @keyframes fadein {
@@ -107,10 +105,7 @@ function updateTopic() {
 function updateBackgroundColor() {
     const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor; // Apply the color directly
-    setTimeout(() => {
-        document.body.style.backgroundColor = ''; // Remove the color after a short delay
-    }, 100); // Adjust the delay as needed
+    document.body.style.backgroundColor = randomColor;
 }
 
 updateTopic();

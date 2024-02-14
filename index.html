@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversation Game</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Transition</title>
+<style>
+    body {
+        transition: background-color 0.5s ease; /* Transition effect for background-color */
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="topic">Conversation Topic</h1>
-        <button id="nextButton">Next Topic</button>
-    </div>
+<div id="topic"></div>
+<button id="nextButton">Next Topic</button>
 
-    <script src="script.js"></script>
+<script>
+const topics = [
+    "Favorite Travel Destinations",
+    "Dream Jobs",
+    "Favorite Books/Movies/TV Shows",
+    "Hobbies and Interests",
+    "Memorable Childhood Memories",
+    "Bucket List Items",
+    "Pets",
+    "Food and Cuisine",
+    "Personal Goals",
+    "Funny or Embarrassing Stories"
+];
+
+let currentTopicIndex = 0;
+
+const topicElement = document.getElementById('topic');
+const nextButton = document.getElementById('nextButton');
+
+nextButton.addEventListener('click', () => {
+    updateTopic();
+});
+
+function updateTopic() {
+    const remainingTopics = topics.filter((topic, index) => index !== currentTopicIndex);
+    const randomIndex = Math.floor(Math.random() * remainingTopics.length);
+    const newTopic = remainingTopics[randomIndex];
+    topicElement.textContent = newTopic;
+    currentTopicIndex = topics.indexOf(newTopic);
+    updateBackgroundColor();
+}
+
+function updateBackgroundColor() {
+    const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = randomColor; // Apply the color directly
+    setTimeout(() => {
+        document.body.style.backgroundColor = ''; // Remove the color after a short delay
+    }, 100); // Adjust the delay as needed
+}
+
+updateTopic();
+</script>
 </body>
 </html>

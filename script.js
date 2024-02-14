@@ -6,7 +6,7 @@
 <title>Color Transition</title>
 <style>
     body {
-        transition: background-color 2s ease; /* Transition effect for background-color */
+        transition: background-color 0.5s ease; /* Transition effect for background-color */
     }
 </style>
 </head>
@@ -34,13 +34,15 @@ const topicElement = document.getElementById('topic');
 const nextButton = document.getElementById('nextButton');
 
 nextButton.addEventListener('click', () => {
-    currentTopicIndex = (currentTopicIndex + 1) % topics.length;
     updateTopic();
 });
 
 function updateTopic() {
-    const currentTopic = topics[currentTopicIndex];
-    topicElement.textContent = currentTopic;
+    const remainingTopics = topics.filter((topic, index) => index !== currentTopicIndex);
+    const randomIndex = Math.floor(Math.random() * remainingTopics.length);
+    const newTopic = remainingTopics[randomIndex];
+    topicElement.textContent = newTopic;
+    currentTopicIndex = topics.indexOf(newTopic);
     updateBackgroundColor();
 }
 
@@ -57,4 +59,3 @@ updateTopic();
 </script>
 </body>
 </html>
-    

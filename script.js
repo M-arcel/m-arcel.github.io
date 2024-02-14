@@ -6,7 +6,7 @@
 <title>Color Transition</title>
 <style>
     body {
-        transition: background-color 0.5s ease; /* Transition effect for background-color */
+        transition: background-color 2s ease; /* Transition effect for background-color */
     }
 </style>
 </head>

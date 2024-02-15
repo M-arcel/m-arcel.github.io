@@ -1,112 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Topic Selector</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    #container {
-        text-align: center;
-    }
-
-    #topic {
-        font-size: 24px;
-        margin-bottom: 20px;
-        animation: fadein 3s;
-    }
-
-    #nextButton {
-        background-color: #000000;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 20px;
-    }
-
-    #nextButton:hover {
-        background-color: #222222;
-    }
-
-    @keyframes fadein {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    @media (max-width: 600px) {
-        #topic {
-            font-size: 18px;
-        }
-        #nextButton {
-            font-size: 14px;
-        }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatMate</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="container">
-    <div id="topic">Click the button to start</div>
-    <button id="nextButton">Next Topic</button>
-</div>
-
-<script>
-let topics = [
-    "Favorite Travel Destinations",
-    "Dream Jobs",
-    "Favorite Books/Movies/TV Shows",
-    "Hobbies and Interests",
-    "Memorable Childhood Memories",
-    "Bucket List Items",
-    "Pets",
-    "Food and Cuisine",
-    "Personal Goals",
-    "Funny or Embarrassing Stories"
-];
-
-let currentTopicIndex = 0;
-
-const topicElement = document.getElementById('topic');
-const nextButton = document.getElementById('nextButton');
-
-nextButton.addEventListener('click', () => {
-    updateTopic();
-});
-
-function updateTopic() {
-    topics = topics.filter((topic, index) => index !== currentTopicIndex);
-    if (topics.length === 0) {
-        topicElement.textContent = "End of the game!";
-        nextButton.disabled = true; // Disable the button to prevent further clicks
-        document.body.style.backgroundColor = 'ffffff';
-        return;
-    }
-    const randomIndex = Math.floor(Math.random() * topics.length);
-    const newTopic = topics[randomIndex];
-    topicElement.textContent = newTopic;
-    currentTopicIndex = topics.indexOf(newTopic);
-    updateBackgroundColor();
-}
-
-function updateBackgroundColor() {
-    const colors = ['#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor;
-}
-</script>
+<header>
+    <h1>Chat <span>MATE</span></h1>
+</header>
+<main>
+    <div id="conversation-topic">
+        Poďme sa porozprávať o...
+    </div>
+    <button id="next-button">Štart</button>
+</main>
+<script src="script.js"></script>
 </body>
 </html>

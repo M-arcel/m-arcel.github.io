@@ -33,11 +33,10 @@
         font-size: 16px;
         cursor: pointer;
         border-radius: 20px;
-        transition: background-color 5s ease;
     }
 
     #nextButton:hover {
-        background-color: #dddddd;
+        background-color: #222222;
     }
 
     @keyframes fadein {
@@ -93,6 +92,7 @@ function updateTopic() {
     if (topics.length === 0) {
         topicElement.textContent = "End of the game!";
         nextButton.disabled = true; // Disable the button to prevent further clicks
+        document.body.style.backgroundColor = 'ffffff';
         return;
     }
     const randomIndex = Math.floor(Math.random() * topics.length);

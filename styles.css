@@ -44,7 +44,6 @@ main {
     height: 50vh; /* Set height to 20% of the viewport height */
     margin: 20px;
     padding: 20px;
-    border-radius: 30px;
     margin-bottom: 20px;
     text-align: center;
     display: flex; /* Use flexbox */
@@ -61,11 +60,6 @@ main {
     font-size: 1.2em;
     padding: 15px 30px;
     border: none;
-    border-radius: 30px;
     cursor: pointer;
     width: 90vw;
-}
-
-#next-button:hover {
-    background-color: #a2a2a2;
 }

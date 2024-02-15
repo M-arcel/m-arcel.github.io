@@ -1,6 +1,6 @@
 // Define an array of topics
 const topics = [
-    "Čo je najzvláštnejšie jedlo, ktoré si kedy jedol?",
+    "Čo je najzvláštnejšie jedlo, ktoré si kedy jedol??",
     "Podeľ sa o nepríjemný moment, ktorý si zažil na verejnosti.",
     "Ak by si mohol na jeden deň vymeniť život s niekým, s kým a prečo?",
     "Čo je najabsurdnejšia vec, ktorú si urobil pre lásku?",

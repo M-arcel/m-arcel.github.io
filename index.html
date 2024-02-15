@@ -66,7 +66,7 @@
 </div>
 
 <script>
-const topics = [
+let topics = [
     "Favorite Travel Destinations",
     "Dream Jobs",
     "Favorite Books/Movies/TV Shows",
@@ -89,13 +89,13 @@ nextButton.addEventListener('click', () => {
 });
 
 function updateTopic() {
-    const topics = topics.filter((topic, index) => index !== currentTopicIndex);
+    topics = topics.filter((topic, index) => index !== currentTopicIndex);
     if (topics.length === 0) {
         topicElement.textContent = "End of the game!";
         nextButton.disabled = true; // Disable the button to prevent further clicks
         return;
     }
-    const randomIndex = Math.floor(Math.random() * remainingTopics.length);
+    const randomIndex = Math.floor(Math.random() * topics.length);
     const newTopic = topics[randomIndex];
     topicElement.textContent = newTopic;
     currentTopicIndex = topics.indexOf(newTopic);
@@ -107,8 +107,6 @@ function updateBackgroundColor() {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     document.body.style.backgroundColor = randomColor;
 }
-
-updateTopic();
 </script>
 </body>
 </html>

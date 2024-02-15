@@ -31,18 +31,51 @@ const topics = [
     "Aká je tvoja najhlúpejšia náhoda alebo nešťastná udalosť, ktorá sa ti kedy stala?",
     "Čo je najzvláštnejšie miesto, ktoré si kedy navštívil?",
 ];
+const initialTopics = topics.slice(); // Copy the initial topics array
+let hue = Math.floor(Math.random() * 360); // Initialize hue value randomly between 0 and 359
 
-// Copy the initial topics array
-const initialTopics = topics.slice();
+// Bind the displayNextTopic function to the "Next" button
+document.getElementById("next-button").addEventListener("click", displayNextTopic);
 
-// Shuffle the initial topics array
-shuffleTopics(initialTopics);
+// Function to display the next topic
+function displayNextTopic() {
+    if (topics.length > 0) {
+        console.log("Remaining topics:", topics); // Log remaining topics
+        shuffleTopics(topics); // Shuffle topics array
+        const topic = topics.pop();
+        const topicElement = document.getElementById("conversation-topic");
+        topicElement.textContent = topic;
 
-// Define an array of pastel colors
-const colors = ['#FFD1DC', '#ADD8E6', '#FFA07A', '#B0E0E6', '#98FB98'];
+        // Apply current color based on hue
+        topicElement.style.backgroundColor = `hsl(${hue}, 70%, 80%)`;
 
-let currentColorIndex = -1;
-let lastColorIndex = -1;
+        // Increment hue for next click
+        hue = (hue + 10) % 360; // Increment by 30 degrees for a smooth transition
+
+        document.getElementById("next-button").textContent = "Ďalšia otázka";
+        console.log("Displayed topic:", topic); // Log displayed topic
+    } else {
+        const topicElement = document.getElementById("conversation-topic");
+        topicElement.textContent = "Už ste sa porozprávali o všetkom!";
+        topicElement.style.backgroundColor = "#fff"; // Change div background color to white
+        document.getElementById("next-button").textContent = "Začať znova";
+        document.getElementById("next-button").removeEventListener("click", displayNextTopic);
+        document.getElementById("next-button").addEventListener("click", startOver);
+        console.log("No topics left.");
+    }
+}
+
+// Function to start over the game
+function startOver() {
+    console.log("Starting over...");
+    topics.length = 0;
+    topics.push(...initialTopics); // Revert to initial topics
+    document.getElementById("next-button").textContent = "Ďalšia otázka";
+    document.getElementById("next-button").removeEventListener("click", startOver);
+    document.getElementById("next-button").addEventListener("click", displayNextTopic);
+    hue = 0; // Reset hue value
+    displayNextTopic(); // Display the first topic
+}
 
 // Function to shuffle the topics array
 function shuffleTopics(array) {
@@ -52,57 +85,3 @@ function shuffleTopics(array) {
     }
     return array;
 }
-
-// Function to display the next topic
-function displayNextTopic() {
-    if (topics.length > 0) {
-        const topic = topics.pop();
-        const topicElement = document.getElementById("conversation-topic");
-        topicElement.textContent = topic;
-
-        // Cycle through colors and ensure no sequential repeats
-        do {
-            currentColorIndex = Math.floor(Math.random() * colors.length);
-        } while (currentColorIndex === lastColorIndex);
-
-        lastColorIndex = currentColorIndex;
-        topicElement.style.backgroundColor = colors[currentColorIndex];
-        console.log("Displayed topic:", topic); // Log displayed topic
-    } else {
-        const topicElement = document.getElementById("conversation-topic");
-        topicElement.textContent = "Už ste sa porozprávali o všetkom!";
-        topicElement.style.backgroundColor = "#fff"; // Change div background color to white
-        document.getElementById("next-button").textContent = "Začať znova";
-        document.getElementById("next-button").style.backgroundColor = "#c0c0c0"; // Change background color to grey
-        document.getElementById("next-button").style.color = "#000"; // Change text color to white
-        document.getElementById("next-button").removeEventListener("click", displayNextTopic);
-        document.getElementById("next-button").addEventListener("click", startOver);
-        console.log("No topics left.");
-    }
-
-    // Log remaining topics if there are some left
-    if (topics.length > 0) {
-        console.log("Remaining topics:", topics); // Log remaining topics
-    }
-}
-
-// Function to start over the game
-function startOver() {
-    console.log("Starting over...");
-    topics.length = 0;
-    topics.push(...initialTopics); // Revert to initial topics
-    shuffleTopics(topics); // Shuffle topics again
-    console.log("Shuffled Topics:", topics); // Log shuffled topics array
-    const topicElement = document.getElementById("conversation-topic");
-    topicElement.textContent = ""; // Reset topic text content
-    topicElement.style.backgroundColor = ""; // Reset div background color
-    document.getElementById("next-button").textContent = "Ďalšia otázka";
-    document.getElementById("next-button").style.backgroundColor = "#808080"; // Change background color back to grey
-    document.getElementById("next-button").style.color = "#fff"; // Change text color back to white
-    document.getElementById("next-button").removeEventListener("click", startOver);
-    document.getElementById("next-button").addEventListener("click", displayNextTopic);
-    lastColorIndex = -1; // Reset last color index
-    displayNextTopic(); // Display the first topic
-}
-// Bind the displayNextTopic function to the "Next" button
-document.getElementById("next-button").addEventListener("click", displayNextTopic);

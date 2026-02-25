@@ -105,3 +105,20 @@ footer {
     color: #888;
     font-size: 14px;
 }
+
+/* Clickable ingredients */
+.ingredients li {
+    cursor: pointer;
+    padding: 6px 0;
+    transition: 0.2s;
+}
+
+.ingredients li:hover {
+    opacity: 0.7;
+}
+
+/* Crossed out state */
+.ingredients li.checked {
+    text-decoration: line-through;
+    color: #999;
+}

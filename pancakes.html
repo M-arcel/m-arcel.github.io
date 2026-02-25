@@ -20,7 +20,7 @@
 
     <main>
         <h2>Ingredients</h2>
-        <ul>
+        <ul class="ingredients">
             <li>Flour</li>
             <li>Milk</li>
             <li>Eggs</li>
@@ -36,5 +36,15 @@
         </ol>
     </main>
 
+<script>
+    const ingredients = document.querySelectorAll(".ingredients li");
+
+    ingredients.forEach(item => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("checked");
+        });
+    });
+</script>
+    
 </body>
 </html>

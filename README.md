@@ -1,1 +1,1 @@
-Website for cooking experiments and other stuff
+My personal website.
